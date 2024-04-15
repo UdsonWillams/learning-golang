@@ -1,0 +1,15 @@
+O pacote fmt possui diversas funções.
+
+Oque usamos no curso são as:
+
+grupo 1:
+print, prinln e prinf
+print normal, um print com uma linha a mais e um print que pode ser formatado.
+
+grupo 2:
+sprint, sprintf e sprintln
+mesma logica do acima, porém essas funções retornar uma string no lugar de retornar num console.
+
+grupo 3:
+fprint, fprinf e fprinln
+Usados para ler arquivos de bytes

@@ -1,0 +1,19 @@
+type novo_tipo int
+var b novo_tipo
+
+criei um novo tipo e declarei a variavel b como sendo desse novo tipo.
+
+Usei o int para ser o tipo subjacente, mas isso não quer dizer que novo_tipo é do tipo int.
+
+Agora é possivel utilizar de um conversão para um valor do tipo novo_tipo ser passado para um valor int, ex.:
+
+type novo_tipo int
+var b novo_tipo
+var c int
+
+isso da erro:
+c = b
+
+mas isso da certo:
+c = int(b)
+

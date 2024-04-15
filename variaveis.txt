@@ -1,0 +1,81 @@
+package main = pacote principal
+dizemos ao sistema que o sistema começar por aqui.
+
+Assim como a função Main() é a primeira a ser iniciada.
+
+A função main é a porta de entrada e de saída para qualquer programa que escrevermos em GO.
+
+ex.:
+fmt.Println("Hello World")
+pacote = fmt
+identificador = Println
+
+EM GO Não podemos instanciar valores as variaveis e depois não utiliza-las. Isso gera um erro!
+-- Exceto se utilizarmos o blank identifier que é representado pelo underline >> _
+Você diz ao compilador que você está recebendo um valor que você não quer, assim não dará erro, e o processo pode seguir.
+
+"null em go é chamado de nil"
+
+FUNÇÃO VARIADICA
+
+Recebe 3 pontinhos e trabalha com qualquer numero de argumentos e consegue trabalhar com eles.
+
+Todos os tipos em GO implementam uma interface vazia >  interface{}
+
+As funções também explicam oque elas devem retornar. no caso do Println ela retorna (n int, err error)
+
+TIPOS PRIMITIVOS
+
+Os tipos primitivos da linguaguem GO são os
+inteiros, int.
+textos, str.
+boleanos, bool.
+--------------------------
+Operador curto de declaração, ou :=
+Serve para declarar uma variavel, ele diz ao sistema, olha, temos uma nova variavel, com nome tal e do tipo tal.
+
+Atribuir um valor a uma variavel, usamos um operador de atribuição.
+
+O := tem atribuição de tipo automatica.
+x := 10 é int automaticamente por usar os valores inteiros.
+caso a variavel ja exista, não é possivel re-declarala, e sim atribuir um novo valor a ela, ex
+x := 11, daria um erro, agora x=11 mudaria o valor de x.
+
+o operador de declaração := ou marmota, só pode ser usado dentro de um code block, é possivel criar variaveis fora de um escopo, mas com o operador var.
+ex.:
+
+var x = 10
+func main(){
+	fmt.Println(x) << funcionaria
+}
+PACKAGE LEVEL SCOPE
+
+Tipos são a base do GO, são muito importantes.
+
+Tipos em go são estaticos, caso eu um tipo seja declarado, não é possivel mudar o tipo da variavel, apenas se criarmos outra variavel.
+
+GO é uma linguaguem de tipagem estática. 
+
+Podemos declarar o valor do tipo da variavel na sua declaração, ex.:
+var x int = 10
+
+Se declararmos uma variavel sem valor, o valor so poderá ser declarado dentro de um codeblock
+ex.:
+var x int
+x = 10
+/\/\ isso geraria um erro.
+
+VALOR 0 
+Quando uma variavel é declarada sem valores, o valor 0 é atribuido a variavel por padrão, cada tipo tem seu 0 diferente. exemplos.:
+INTS = 0
+FLOATS64 = 0.0
+BOOLEANS = false
+STRINGS = ""
+pointers, functions, interfaces, slices, channels e maps = nil
+
+Usamos o := sempre que possivel, e o var para variaveis de package-level scope.
+
+string interpretada, interpreta os valores passados e atualiza no retorno desejado, ex.:
+"tste\n\n"
+o retorno seria tste com 2 linhas puladas
+Para usar das raw strings em go usamos backtick ou acento grave >> ``

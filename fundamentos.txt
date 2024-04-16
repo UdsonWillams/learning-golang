@@ -1,0 +1,29 @@
+Expressoes no GO
+
+Operadores relacionais.
+== | igualdade
+<= | menor igual
+>= | maior igual
+!= | diferente
+<  | menor
+>  | maior
+
+----------------------------
+Como funciona os computadores.
+- computadores funcionam com eletricidade
+- eletricidade pode estar ligada ou desligada
+- é possivel criar um esquema de codificação:
+  - dando significado aos estados on e off
+  ex.:
+    - Lâmpadas na varanda:
+    1. lampada = 2 mensagens, ligado e desligado
+    2. lampadas = 4 mensagens
+    3. lamapdas = 8 mensagens e por ai vai...
+A formula é 2 elevado a N, aonde n é o valor de "lampadas"
+
+Essa é a logica dos numeros binarios ou Binary Digits 
+O nome Bits, vem de uma abreviação desse nome.
+
+ASCII: https://en.wikipedia.org/wiki/ASCII
+Ascii foi basicamente substituido pelo UTF-8
+

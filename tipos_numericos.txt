@@ -1,0 +1,50 @@
+int e uint
+int pega os bits e divide 7 bits para valores e 1 bit 
+para o sinal de positivo ou negativo
+Os valores podem ser de -128 a 127
+O uint usa os 8 bits sendo pra valores, porem começando do
+0 e indo até 255
+
+Todos os tipos numericos são distintos, exceto:
+- byte = uint8
+- rune = int32 (UTF-8)
+
+integers:
+- tipos são unicos
+    - Go é uma linguagem estatica
+    - int e int32 não são a mesma coisa
+    - para "mistura-los" é necessario conversão.
+regrageral, usar soment o bom e velho int kkk
+
+floating point:
+    - numeros racionais ou reais
+- regra geral: use somente float64
+
+// exmplo de codigo em go para ver o sistema operacional
+// e a arquitetura do sistema utilizado.
+
+package main
+import (
+	"fmt"
+	"runtime"
+)
+func main() {
+	fmt.Println(runtime.GOOS)
+	fmt.Println(runtime.GOARCH)
+}
+
+# OVERFLOW
+Isso acontece quando passamos um valor maior que O
+tipo da variavel aguenta, o valor é transbordado.
+
+ex.:
+var i uint16
+i = 65535 // maximo que um uint16 pode armazenar
+ao adicionar mais um valor
+i++
+O valor é transbordado e é zerado, i começará a ser 0
+e caso fosse novamente incrementado, iria para 1.
+seu valor inicial teria sido resetado e perdido.
+
+Isso acontece por que o Uint16 tem um valor limite de range
+então, quando o valor é passado, isso acontece.

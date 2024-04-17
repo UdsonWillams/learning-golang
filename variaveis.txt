@@ -79,3 +79,19 @@ string interpretada, interpreta os valores passados e atualiza no retorno deseja
 "tste\n\n"
 o retorno seria tste com 2 linhas puladas
 Para usar das raw strings em go usamos backtick ou acento grave >> ``
+
+CONSTANTES 
+Podem ser tipadas ou não
+
+As contantes não tipadas so teram um tipo atribuido a elas quando elas
+forem usadas.
+const val_1 string = "olá" // tipado
+const val_2 = 10		  // não tipado
+
+É possivel cria-las assim, no caso de multiplas:
+
+const (
+	x = 10
+	y = 20
+	z = 30
+)

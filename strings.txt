@@ -1,0 +1,22 @@
+strings são imutaveis
+para mudançar, é preciso fazer a alteração na string e 
+passar para uma nova variavel. 
+
+em go:
+"" > strings
+`` > raw_strings 
+
+x := "hello, playground"
+
+// Slice de bytes. 
+xb := []byte(x) 
+// retorna os valores em bytes do  valor passado.
+
+%#U na string formatada mostra o valor em unicode
+%#x na string formatada mostra o valor em hexadecimal
+
+("%#U -- %#x ", v, v) >> format_verbs
+mostraria o unicode e o hexadecimal do valor especifico em string
+
+doc de go sobre string \/
+https://blog.golang.org/strings

@@ -1,0 +1,18 @@
+- golang.org/ref/spec
+- Numa declaração de constantes, o identificador iota 
+representa números sequenciais.
+- Na prática.
+    - iota, iota + 1, a = iota b c, reinicia em cada const, _
+- Go Playground: https://play.golang.org/p/eSrwoQjuYR
+
+Sucessivas contantes não tipadas inteiras.
+
+iota representa um inteiro sucessivo sem tipo definido.
+você tem um numero, ele ainda não é tipado, e é possivel usar
+com um float por exemplo.
+
+cada vez que voce poe um iota a constante recebe um valor
+inicialmente sendo 0, e a cada iota adicionado é almentado esse valor.
+
+TODO
+bom entender melhor essa questão!

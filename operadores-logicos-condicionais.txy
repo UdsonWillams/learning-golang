@@ -1,0 +1,3 @@
+&& = equivale ao operador AND 
+|| = equivale ao operador OR 
+!  = equivale ao NOT  > !true = Não True

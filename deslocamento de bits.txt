@@ -1,0 +1,24 @@
+- Deslocamento de bits é quando deslocamos digitos binários para a esquerda ou direita.
+- https://play.golang.org/p/7MOnbhx4R4
+- https://splice.com/blog/iota-elegant-...
+-   / bit-hacking-with-go  
+
+Quando deslocamos bits da esquerda para direita e vice-versa
+
+É possivel fazer isso no GO de forma simples
+não é algo habitual, mas é possivel fazer.
+
+x := 1
+x = x << 1 // aqui ocorre um deslocamento de bits 
+<< = deslocamento de bit pra esquerda
+>> = deslocamento para direita.
+
+// Coisa legal com Deslocamento de Bits
+A partir dessa questão de deslocamento de bits é possivel
+a gente começar a multiplicar por 2 e dividir por 2 os valores.
+Ex.:
+var num int = 200
+var num_deslocado = num << 1
+num_deslocado agora vai ser 400
+var num_deslocado = num >> 1
+e ao contrario vai ser 100

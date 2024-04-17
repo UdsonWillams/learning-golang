@@ -1,0 +1,157 @@
+Computadores leem em sequencia.
+Lendo as linha de cima para baixo
+
+loop = fluxo de controle de repetição.
+
+fluxos de controle condicionais
+os ifs e elses, switch case, etc.
+
+LOOP FOR:
+
+Ex de um for em GO
+for x := 0; x < 10; x++ {
+    // do something
+}
+ou seja, bem normal. 
+o for, um valor de inicio, uma condição de parada e 
+um incremento para o for poder rodar.
+
+Não existe laço while em go.
+
+// Mais exemplos de for e outras estruturas: https://gobyexample.com/
+
+NESTED LOOPS (REPETIÇÃO HIERARQUICA)
+loops aninhados.
+eles seguem uma logica, aonde o mais acima so roda novamente
+depois do mais abaixo rodar todas as sduas repetições.
+
+Exemplos de um loop alinhado
+for mes := 1; mes <=12; mes++ {
+    fmt.Println("Mês:", mes)
+    for x:= 1; x <= 30; x++ {
+        fmt.Println("Dia:", x, ", ")
+    }
+}
+
+NÃO TEMOS WHILE EM GO.
+porem podemos iniciar um loop for apenas com uma condição
+sem as outras instruções, oque dá a ele um formato e 
+funcionamento parecido com o while.
+ex.:
+x := 0
+for x < 10 {
+    // do something
+    x++
+}
+// Esse formato é bem similar ao while e funciona em GO.
+
+também é possivel criar um bem similar ao while sem condição
+for {
+    // do something
+}
+Porem é criar um loop sem condição, ele vai rodar pra sempre
+nesse formato.
+
+BREAK existe em GO
+ele "Quebra" os LOOPS
+
+// Efective GO falando mais sobre o FOR LOOP
+https://go.dev/doc/effective_go#for
+
+CONTINUE
+diferente do Break, ele quebra a execução atual do loop
+a interação que está ocorrendo naquela "hora".
+Bem similar ao python o Break e o Continue.
+
+--DESAFIO DE LOOPS COM ASCII FEITO E ADICIONADO AO PROJETO.--
+
+CONDICIONAIS!
+- Padrão normal em go
+If condição == True {
+    // do something
+}
+! = operador logico para o NOT
+ex.:
+x := 10
+if !(x > 100){
+    // do something
+}
+Ou seja, x é maior que 10? dá false
+O ! é a negação, então transforma a expressão em true.
+
+Podemos dar uma opção de inicialização ao IF como no for e no python
+Python = walrus operator.
+ex.:
+if x := 10; !(x > 100) {
+    // do something
+}
+Isso é possivel, passamos um valor e verificamos o valor no proprio IF.
+
+No go também temos o if, o else, e o else if, normalmente.
+
+ex.:
+if x:= 500; x > 100 {
+    // do something
+} else if x < 10 {
+    // do something
+} else {
+    // do something
+}
+
+-- SWITCH CASE --
+Parece bem padrão também, adição do fallthrough, achei legal, e não conhecia.
+Se usa de um switch + expressão + case para executar alguma tarefa.
+ex.:
+user := "udson"
+switch user {
+    case "joão":
+        // do something
+    case "lucas":
+        // do something
+    case "udson":
+        // do something (esse seria a tarefa a ser executada)
+}
+além disso existe a keyword fallthrough que diz ao switch que
+no caso do case ser acionado, o valor abaixo também deverá ser
+executado.
+ex.:
+switch user {
+    case "udson":
+        // do something (Esse comando executaria)
+        fallthrough
+    case "lucas":
+        // do something (Esse comando tbm seria executado por conta do fallthrough)
+    case "joao":
+        // do something
+}
+Também existe um default case, que caso o valor passado não bata com nada, ele é executado.
+ex.:
+switch user {
+    case "joão":
+        // do something
+    case "lucas":
+        // do something
+    case "leonardo":
+        // do something
+    default:
+        // do something (esse seria a tarefa a ser executada)
+}
+Também é possivel cria casos compostos, que são mais de 1 caso
+para verificação. 
+ex.:
+switch user {
+    case "joão", "fernando":
+        // do something
+    case "lucas", "udson":
+        // do something (esse seria a tarefa a ser executada)        
+}
+Isso seria verificado, e retornaria o 2° case.
+
+também é possivel fazer um switch sem expressão e verifica-la
+nos cases, ex.:
+switch {
+    case (user == "joão"), (user == "fernando"):
+        // do something
+    case (user == "lucas"), (user == "udson"), :
+        // do something (esse seria a tarefa a ser executada)        
+}

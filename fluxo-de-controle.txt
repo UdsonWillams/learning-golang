@@ -155,3 +155,27 @@ switch {
     case (user == "lucas"), (user == "udson"), :
         // do something (esse seria a tarefa a ser executada)        
 }
+É possivel utilizar um switch para fazer uma ação de acordo
+com o tipo do valor a ser validado.
+ex.:
+var x interface{}
+x = true
+switch x.(type) {
+    case int:
+        // do something
+    case bool:
+        // do something
+    case string:
+        // do something
+    case float64:
+        // do something
+}
+É uma forma de validar um dado que possa ter multiplos tipos talvez.
+o switch tbm pode iniciar tendo uma expressão de inicialização
+
+switch x := 2 {
+    case x == 1:
+        // do something
+    case x == 2:
+        // do something
+}

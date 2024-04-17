@@ -1,0 +1,20 @@
+decimal, binario e hexadecimal.
+
+sistemas numericos são maneiras diferentes de contar
+decimal vamos de 0 a 9, quando isso acaba, o 0 vem para
+a direita e é adicionado o 1 a esquerda
+10, e assim por diante.
+
+binario já é diferente, são 0 e 1 apenas, então para cada
+representação, é um valor diferente.
+como 0 e 1 conseguem representar 3 valores, para um valor 4
+é preciso de um 3 valor, ou um terceiro bit.
+4 = 100
+1 = 01
+2 = 10
+3 = 11
+4 == 100
+
+E hexadecimal é bem similar, só que a partir do 9 são acrescentados
+caracteres, 8,9, a, b,c,d e f.
+tendo a mesma logica dos outros.

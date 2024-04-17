@@ -1,0 +1,11 @@
+ASCII: https://en.wikipedia.org/wiki/ASCII
+
+Efective_GO: https://go.dev/doc/effective_go
+
+Mais exemplos de for e outras estruturas: https://gobyexample.com/
+
+- Deslocamento de bits é quando deslocamos digitos binários para a esquerda ou direita.
+- https://play.golang.org/p/7MOnbhx4R4
+- https://splice.com/blog/iota-elegant-...
+-   / bit-hacking-with-go 
+

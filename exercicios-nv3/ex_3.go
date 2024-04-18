@@ -9,11 +9,8 @@ func main() {
 
 	my_year := 1996
 	actual_year := 2024
-	for {
+	for actual_year >= my_year {
 		fmt.Println(my_year)
 		my_year++
-		if my_year > actual_year {
-			break
-		}
 	}
 }

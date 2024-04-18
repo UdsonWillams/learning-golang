@@ -1,0 +1,54 @@
+Slice é um tipo de dado composto.
+
+Dados compostos são qualquer tipos de dados que
+podem ser construidos utilizando qualquer tipo
+primnitivo da linguaguem ou outros tipos de dados
+compostos.
+
+A logica do slice é um pouco similar ao
+array, por ex na sua definição.
+
+array := [5]int{1,2,3} // defini um array
+
+slice := []int{1,2,3} // defini um slice.
+
+A diferença é que não precisamos dar um tamanho
+maximo ao slice, e podemos utilizar funções como append ao slice.
+
+ex.:
+slice = append(slice, 4)
+
+slice >> {1, 2, 3, 4} // agora o slice possui 4 valores.
+
+por tras dos panos o compilador pega o slice, e recria um novo a 
+cada append com o valor antigo mais 1 novo.
+Basicamente recria um array com um novo valor.
+Logica da linguaguem.
+
+Só é possivel adicionar valor a um slice com o append
+O codigo:
+slice[5] = 1
+por exemplo não seria possivel, retornaria um erro de out-of-range
+
+range é uma key-word do GO, podemos percorrer os valores de um 
+slice por ela no GO.
+ex.:
+for indice, valor := range slice {
+	fmt.Println("No indice:", indice "temos o valor:", valor)
+}
+ate agr, entendi que ele é similar ao enumarate python
+mais que o proprio range.
+
+Ex.:
+package main
+
+import "fmt"
+
+func main() {
+	slice := []int{20, 21, 22, 23, 1, 13}
+	total := 0
+	for _, valor := range slice {
+		total += valor
+	}
+	fmt.Println("Valor total contido no array:", total)
+}

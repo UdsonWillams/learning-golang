@@ -1,0 +1,24 @@
+array ou lista, é um conjunto de dados de mesmo tipo.
+
+Como criamos um array \/
+var x [5]int 
+
+Em geral eles são inflexiveis.
+
+um array
+var x [5]int 
+e um
+var x [6]int 
+São arrays diferentes e não são do mesmo tipo.
+Chamamos o primeiro de array de tipo 5 e o segundo de array
+de tipo 6.
+
+Podemos usar algumas funções para utilizar encima dos arrays
+ex.: len(x) // verifica o tamnho do array.
+
+Mesmo existindo a ideia é que arrays não são idiomaticos em go
+a documentação indica usar slices no lugar dos arrays.
+
+array := [5]int{1,2,3} // defini um array de 5 elementos com 3 ja preenchidos.
+Nesse cao o array seria 
+[1, 2, 3, 0, 0]

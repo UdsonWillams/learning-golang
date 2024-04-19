@@ -1,0 +1,127 @@
+basicamente fatiar uma fatia hehehe
+o slice pode ser "fatiado", ou seja, dividido com
+alguma logica por trás.
+
+exemplos:
+package main
+
+import "fmt"
+
+func main() {
+	sabores := []string{
+		"peperoni", "mozzarela", "abacaxi", "3 queijos",
+	}
+	// Isso vai do 0 ao index 2, retornando [peperoni, mozzarela]
+	fatia := sabores[0:2]
+	fmt.Println(fatia)
+
+	// Isso vai do 0 ao tamanho de sabores, retornando [abacaxi, 3 queijos]
+	fatia = sabores[2:len(sabores)]
+	fmt.Println(fatia)
+}
+
+DELETANDO VALORES COM SLICE
+me pareceu meio gambeta, mas a ideia é:
+fazer uma nova slice recebendo os valores exceto oque precisa
+ser excluido, ex.:
+
+package main
+
+import "fmt"
+
+func main() {
+	sabores := []string{
+		"peperoni", "mozzarela", "abacaxi", "3 queijos",
+	}
+
+    // primeiro fatiamento vai de 0 ao 2,sendo o 2 exclusivo
+    // segundo valor vai do 3 ao fim. Isso retorna um novo slice 
+    // sem o valor 2, sendo assim o deletando.
+	sabores = append(sabores[0:2], sabores[3:]...)
+	fmt.Println(sabores)
+}
+
+Os 3 pontinhos usados no append equivale a um comando
+O comando = enumeration
+Ele fala que ao inves de querer a slice sabores[3:]
+voce fala que está querendo os valores contidos no slice
+
+Ou seja estamos usando uma enumeração dos itens dessa fatia.
+EX.::.:
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+
+	umaslice := []int{1, 2, 3, 4}
+	outraslice := []int{9, 10, 11, 12}
+
+	fmt.Println(umaslice)
+
+	umaslice = append(umaslice, 5, 6, 7, 8)
+
+	fmt.Println(umaslice)
+
+	umaslice = append(umaslice, outraslice...)
+
+	fmt.Println(umaslice)
+}
+
+SLICES SÃO FEITAS DE ARRAY, POREM SLICES SÃO DINAMICAS
+ELAS PODEM MUDAR DE TAMANHO.
+SEMPRE QUE UMA SLICE MUDA DE TAMANHO UM NOVO ARRAY É CRIADO
+E OS DADOS SÃO MOVIDOS PRA LÁ.
+
+por conta de tudo isso acima, o go pode ter um pouco de 
+tempo de processamento, nesse processo de pegar o valor, 
+jogar fora e retornar um novo array.
+
+Existe uma forma mais especifica de trabalhar para contornar esse
+formato que é utilizando o make([]int, 5, 10)
+Oque é isso?
+É uma forma de fazer um slice dizendo seu tipo
+seu tamanho e sua capacidade de armazenamento.
+Ou seja melhorando a otimização do codigo.
+Ex.:
+make([]int, 5, 10) \/\/
+Faz um slice de tipo int com 5 valores,
+podendo comportar até 10 valores sem precisar de copiar e deletar 
+o slice.
+
+Ex .:
+import (
+	"fmt"
+)
+
+func main() {
+	slice := make([]int, 5, 10)
+	
+	slice[0], slice[1], slice[2], slice[3], slice[4] = 1, 2, 3, 4, 5
+	
+	slice = append(slice, 6)
+	slice = append(slice, 7)
+	slice = append(slice, 8)
+	slice = append(slice, 9)
+	slice = append(slice, 10)
+	
+    // [1 2 3 4 5 6 7 8 9 10] 10 10
+    // os valores de 1 a 10 no slice, de tamanho 10 e que suporta 10 valores.
+	fmt.Println(slice, len(slice), cap(slice))
+	
+	slice = append(slice, 10)
+	
+    
+	fmt.Println(slice, len(slice), cap(slice))
+    // [1 2 3 4 5 6 7 8 9 10 10] 11 20
+    // Aqui os valores passaram do tamanho total do slice, o total que ele suporta.
+    // O GO altomaticamente entende que o slice passou do que foi acordado,
+    // então ele apaga o slice anterior, cria outro e agora com um valor dobrado do que ele
+    // pode aguentar. 
+    
+    // Isso é ruim, já que a logica do make é fazer algo "certinho" para poupar esforço computacional
+    // Mas não irá quebrar nada.
+
+}

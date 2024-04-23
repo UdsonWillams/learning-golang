@@ -52,3 +52,43 @@ func main() {
 	}
 	fmt.Println("Valor total contido no array:", total)
 }
+
+//// IMPORTANTE
+Existe uma questão que pode dar trabalho nos slices
+
+Quando queremos usar um slice como referencia, num append por ex.
+Caso façamos uma alteração num segundo slice que referencia o 
+primeiro, o primeiro é afetado e alterado!
+Ex.:
+func main() {
+
+	primeiroslice := []int{1, 2, 3, 4, 5}	
+	fmt.Println(primeiroslice)
+	
+	segundoslice := append(primeiroslice[:2], primeiroslice[4:]...)
+
+	fmt.Println(segundoslice)
+	fmt.Println(primeiroslice)
+}
+>> [1 2 3 4 5]
+>> [1 2 5]
+>> [1 2 5 4 5] // o valor do index 2 voltou como 5 aqui.
+
+Existe uma forma de isso não acontecer, mas é bom sempre ter cuidado.
+A forma é não apontando o antigo slice no append, apenas pegando os valores
+dele com com o enumarate(...)
+Ex.:
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	primeiroslice := []int{1, 2, 3, 4, 5}
+	fmt.Println(primeiroslice)                                   // output [1 2 3 4 5]
+	segundoslice := append([]int{}, primeiroslice...)            // inicializa o segundo slice tendo um slice vazio como base
+	segundoslice = append(segundoslice[:2], segundoslice[4:]...) // agora sim fazemos o append que queremos
+	fmt.Println(segundoslice)                                    // output [1 2 5]
+	fmt.Println(primeiroslice)                                   // output [1 2 3 4 5] igual ao primeiro print
+}

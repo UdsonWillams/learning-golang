@@ -1,0 +1,21 @@
+Slice é um valor em sequencia.
+
+UM SLICE DEMENSIONAL É SIMILAR A UMA PLANILHA.
+
+É basicamente uma matriz
+
+Como instanciar esse tipo de dado:
+slice_dimensional := [][]int {
+    []int{1, 2, 3},
+    []int{4, 5, 6},
+    []int{7, 8, 9},
+}
+O indice 0 possui um slice com tem 3 valores
+Ou seja esse slice possui outros valores em seus indicies
+começando do 0, que seria o 1, 2, 3.
+
+A FORMA DE ACESSAR ESSES VALORES SERIA ESSA:
+fmt.Println(slice_dimensional[1][1])
+Ou seja, slice_dimensional me de seu indice 1.
+como o retorno é outro slice podemos pegar outro
+valor por indice, no caso slice_dimensional[1][1]

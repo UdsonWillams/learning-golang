@@ -1,0 +1,99 @@
+Estruturas de Key-Value(chave e valor)
+
+Possuem ordem aleatoria. 
+mas possuem fácil acesso pelo valor da chave.
+
+Como instanciar:
+
+amigos := map[string]int{
+    "jose": 12345,
+    "lucas": 54321,
+    "fernando": 123321
+}
+são chaves e valores.
+
+Comma OK Idiom
+É basicamente uma forma de validar se o retorno do map foi 
+0 de não existente, ou se foi 0 do valor real da
+chave requerida.
+var seconds int
+var ok bool
+seconds, ok = timeZone[tz]
+O retorno da variavel okei vai dizer se é um valor real 
+ou um retorno padrão de função.
+ex.: utilizando os valores acima /\
+
+// comma ok idiom
+if sera, ok := amigos["fantasma"]; ok {
+    fmt.Println(sera)    
+} else {
+    fmt.Println("não tem!")
+}
+Ou sejá, se o retorno do ok for true, ele retornará
+o valor contido na chave que foi requisitado para
+a variavel  > será <, caso ok seja false, ele retornará
+que não tem esse amigo.
+
+É uma forma de validação das keys.
+
+Em python isso de chamar uma key inexistente retornaria um erro,
+ja aqui em go, retorna esse valor de 0, por isso precisamos desse valor 
+do comma okei idiom.
+
+A keyword range retorna algo similar do slice, so que aqui 
+com os maps, ele retorna a key e os values. 
+ex.:
+for key, value := range amigos {
+    fmt.Println(key, value)
+    // retorno > jose 12345, e assim por diante.
+    // lembrando que não existe uma ordem valida,
+    // os maps são aleatorios
+}
+
+// DELETAR NOS MAPS 
+para deleções é bem simples.
+
+usar a keyword delete passando o map e a chave a ser deletada.
+Ex.:
+delete(amigos, "jose")
+Isso já deletaria jose do maps amigos.
+
+Exemplo total .:
+
+// You can edit this code!
+// Click here and start typing.
+package main
+
+import "fmt"
+
+func main() {
+	amigos := map[string]int{
+		"jose":     12345,
+		"lucas":    54321,
+		"fernando": 123321,
+	}
+	fmt.Println(amigos)
+	fmt.Println(amigos["jose"])
+
+	amigos["felipe"] = 123321
+
+	fmt.Println(amigos)
+
+	if sera, ok := amigos["fantasma"]; ok {
+		fmt.Println(sera)
+	} else {
+		fmt.Println("não tem!")
+	}
+
+	fmt.Println("---iniciando for---")
+	for key, value := range amigos {
+		fmt.Println(key, value)
+		// retorno > jose 12345, e assim por diante.
+		// lembrando que não existe uma ordem valida,
+		// os maps são aleatorios
+	}
+	fmt.Println("---finalizando for---")
+	delete(amigos, "jose")
+	fmt.Println(amigos)
+
+}

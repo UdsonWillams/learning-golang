@@ -1,0 +1,10 @@
+Tabela básica de formatação de strings:
+string = %s
+integer = %d
+float = %f
+tipo da variável = %T (sim, é T maiúsculo)
+Caso queira saber a relação completa, pode consultar a documentação oficial:
+https://golang.org/pkg/fmt/
+Dica : você pode definir a quantidade de casas após a vírgula 
+no float especificando um ponto seguido da quantidade de casas 
+desejadas, tudo antes do f. Ele vai ficar assim: %.2f

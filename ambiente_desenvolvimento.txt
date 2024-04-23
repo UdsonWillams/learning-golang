@@ -1,0 +1,69 @@
+$GOPATH - pasta que instalamos o GO.
+Nele teremos 3 subdiretorios.
+bin, pkg e src.
+bin = binarios, os executaveis que a gente gerar fica aqui
+pkg = não usamos tanto, tem umas coisas compiladas e etc.
+src = source, aonde a gente salva o codigo.
+
+O padrão dos projetos é ficar no formato:
+src/
+    github.com/ #podendo ser outros servidores git
+        <Nome do usuario (github.com)>/
+        <Nome do usuario (github.com)>/
+        <Nome do usuario (github.com)>/
+        <Nome do usuario (github.com)>/
+
+GOROOT: ONDE OS BINÁRIOS da instalação do GO foram 
+instalados
+    - GOROOT="/usr/lib/go"
+GOPATH: Onde seus aruqivos de trabalho, workspace. fica localizado.
+    - GOPATH="/home/ellen/go"
+    export GOPATH=$HOME/go (.bashrc)
+
+GERENCIAMENTO DE PACOTES
+utilizamos o comando go get, como no ex.:
+>> go get github/nu7hatch/gouuid
+Assim trazemos os valores desse diretorio para podermos usarmos no nosso projeto.
+
+GO GET -u ja busca a lib att caso exista alguma atualização.
+>> go get github/nu7hatch/gouuid
+
+----------------------------------------
+Comandos do utilitario GO 
+
+go version = ver a versão usada no go.
+go env = variaveis do sistema usadas no go
+go run <file name> roda o main do arquivo passado.
+go run *.go roda todos os arquivos go do diretorio atual.
+
+go build
+para um executável:
+    - gera o arquivo binário
+    - informa caso tenham havido erros
+    - caso não hajam erros, cria um executável e salva-o no diretório atual
+para um pacote:
+    - gera o arquivo
+    - informa caso tenham havido erros
+    - descarta o executável
+
+Qual a diff de executável e pacote?
+A diferença é que um executável tem um main e o pacote não.
+O pacote é feito pra ser executado por um main em outro local.
+o executável possui um metodo main para ser executado.
+
+go install
+- para um executável:
+    - faz o build
+    - nomeia o arquivo com o nome do diretório atual
+    - salva o arquivo binário em $GOPATH/bin
+    - o arquivo passa a poder ser chamado apenas pelo nome, sem comando GO.
+- para um pacote:
+    - faz o build
+    - salva o arquivo binário em $GOPATH/pkg
+    - cria archive files (arquivo.a), os arquivos pré-compilados utilizados pelos imports
+
+- flags
+    - "-race" = ver se tem race conditions.
+
+os arquivos precisam estar dentro de uma pasta 
+src/project

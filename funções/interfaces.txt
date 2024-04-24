@@ -1,0 +1,127 @@
+interface é um conjunto de metodos.
+
+Parece algo simples de entender que as pessoas deixam complexo.
+vou explicar o exemplo abaixo que acho que deixa as coisas mais simples.
+
+Criamos 1 tipo pessoa com alguns atributos.
+Esse tipo pessoa é passado para 2 novos tipos como atributos
+
+O tipo Dentista e o tipo Arquiteto.
+
+Esses 2 tipos possuem pessoa como 1 atributo.
+
+criamos 1 metodo para cada especificando como eles dariam bom dia
+ex.:?
+func (x dentista) oibomdia() {
+	fmt.Println("Meu nome é", x.nome, "e eu já arranquei", x.dentesarrancados, "dentes, e ouve só: Bom dia!")
+}
+
+func (x arquiteto) oibomdia() {
+	fmt.Println("Meu nome é", x.nome, "e ouve só: Bom dia!")
+}
+
+Após isso os metodos foram anotados no seu receiver para serem especificos 
+1 pra dentista e o outro pra arquiteto.
+Porem os 2 são metodos oibomdia, logo podemos criar um interface 
+que vai esses metodos especificos dos 2 tipos.
+ex.
+type gente interface {
+	oibomdia()
+}
+E a partir dessa interface podemos fazer algumas coisas:
+ex.:
+Criamos o metodo serhumano com um parametro g gente que é nossa interface:
+Ou seja, como os 2 tipo possuem esse metodo, podemos passar os tipos na chamada
+da função, mas dentro da função, o chamado será a interface.
+
+func serhumano(g gente) {
+	g.oibomdia() // interface possui esse metodo
+	switch g.(type) {
+	case dentista: // se for tipo dentista, podemos chamar seus atributos como o .salario
+		fmt.Println("Eu ganho:", g.(dentista).salário)
+
+	case arquiteto: // Já em arquiteto podemos chamar o atributo .tipodeconstrução
+		fmt.Println("Eu construo:", g.(arquiteto).tipodeconstrução)
+	}
+}
+Aqui é só um exemplo do uso da interface. 
+poderia ser uma interface banco_de_dados por ex.
+
+E independendo do tipo que vinhesse era chamaria o .save() do tipo
+mesmo sendo do tipo, mysql ou postgres ou mariadb, etc.
+
+Ex. total:
+
+package main
+
+import (
+	"fmt"
+)
+
+type pessoa struct {
+	nome      string
+	sobrenome string
+	idade     int
+}
+
+type dentista struct {
+	pessoa
+	dentesarrancados int
+	salário          float64
+}
+
+type arquiteto struct {
+	pessoa
+	tipodeconstrução string
+	tamanhodaloucura string
+}
+
+func (x dentista) oibomdia() {
+	fmt.Println("Meu nome é", x.nome, "e eu já arranquei", x.dentesarrancados, "dentes, e ouve só: Bom dia!")
+}
+
+func (x arquiteto) oibomdia() {
+	fmt.Println("Meu nome é", x.nome, "e ouve só: Bom dia!")
+}
+
+type gente interface {
+	oibomdia()
+}
+
+func serhumano(g gente) {
+	g.oibomdia()
+	switch g.(type) {
+	case dentista:
+		fmt.Println("Eu ganho:", g.(dentista).salário)
+
+	case arquiteto:
+		fmt.Println("Eu construo:", g.(arquiteto).tipodeconstrução)
+	}
+}
+
+func main() {
+	mrdente := dentista{
+		pessoa: pessoa{
+			nome:      "Mister Dente",
+			sobrenome: "da Silva",
+			idade:     50,
+		},
+		dentesarrancados: 8973,
+		salário:          98736.06,
+	}
+
+	mrprédio := arquiteto{
+		pessoa: pessoa{
+			nome:      "Mister Prédio",
+			sobrenome: "Sobrenome",
+			idade:     51,
+		},
+		tipodeconstrução: "Hospícios",
+		tamanhodaloucura: "Demais",
+	}
+
+	serhumano(mrdente)
+	fmt.Println("")
+	serhumano(mrprédio)
+
+}

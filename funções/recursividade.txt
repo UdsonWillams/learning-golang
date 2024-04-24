@@ -1,0 +1,42 @@
+A aplicação mais comun de recursão é em matematica e 
+em ciencia da computação.
+
+Aonde uma função é definida e aplicada com
+a sua propria definição.
+
+Exemplos de recursividade:
+Fractais, matrioscas, efeito Droste, GNU, e etc.
+
+Basicamente é uma função que chama ela mesma em sua execução.
+
+ex.:
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println(fatorial(6))
+}
+
+// Retorna o fatorial do numero passado
+func fatorial(x int) int {
+    if x == 1 {
+        return x
+    }   
+    return x * fatorial(x-1)
+}
+// Se for 1, acaba 1
+// Se não for, retorna o fatorial anterior * o numero atual
+
+Esses exemplos de recursividade também podem ser feitos 
+utilizando LOOPS
+ex acima com loops .:
+
+func loops(x int) int {
+	total := 1
+	for x > 1 {
+		total *= x // total = total * x
+		x--
+	}
+	return total
+}

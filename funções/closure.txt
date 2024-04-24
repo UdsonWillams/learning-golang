@@ -1,0 +1,47 @@
+Closure é cercar ou capturar um scope para que 
+possamos utilizá-lo em outro contexto. Já vimos:
+    - Package-level scope
+    - Function-level scope
+    - Code-block-in-code-block scope
+
+É basicamente pegar um scopo e usa-lo em outro contexto.
+No nosso ex abaixo, eu pego a variavel x e uso ela em outro escopo
+ex.:
+func i() func() int {
+	x := 0 // primeiro scopo do x é aqui
+	return func() int {
+		x++ // depois ele é utilizado aqui, em outro escopo
+		return x
+	}
+}
+Sendo utilizado em outro escopo o x tem seu escopo capturado.
+
+ex.: de Closure
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+
+	a := i()
+
+	fmt.Println(a())
+	fmt.Println(a())
+	fmt.Println(a())
+
+	b := i()
+
+	fmt.Println(b())
+	fmt.Println(b())
+	fmt.Println(b())
+}
+
+func i() func() int {
+	x := 0
+	return func() int {
+		x++
+		return x
+	}
+}

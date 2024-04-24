@@ -1,0 +1,39 @@
+Anonymous self-executing functions → 
+Funções anônimas auto-executáveis.
+
+ex.:
+func main() {
+
+	x := 387
+
+	func(x int) {
+		fmt.Println(x, "vezes 873648 é:")
+		fmt.Println(x * 873648)
+	}(x) // Criamos a função e chamamos ela na mesma hr
+
+}
+Sem muitos arrudeios, é uma função descartavel, quando queremos
+executar algum coisa raṕida e que não vai precisar criar
+uma função especifica só para isso. 
+
+Ela pode possuir parametros, parametros ... e até retornar tipos.
+
+-- Funções como expressão -- 
+Podemos usar uma função como expressão que da valor a uma variavel.
+usando o exemplo anterior
+
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	x := 12
+	y := func(x int) int {
+		//fmt.Println(x, "vezes 873648 é:")
+		return x * 873648
+	}
+	fmt.Println(x, "vezes 873648 é:", y(x))
+
+}

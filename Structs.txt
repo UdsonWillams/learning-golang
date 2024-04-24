@@ -1,0 +1,113 @@
+Tipo de dados que significa, estruturas. 
+
+Struct é um tipo, então declaramos igual a todos os tipos.
+estrutura com tipos dentro dele que são pre-definidos. 
+
+package main
+
+import "fmt"
+
+type cliente struct {
+    nome        string
+    sobrenome   string
+    fumante     bool
+}
+
+func main() {
+	// 2 formas de usar o struct \/\/
+
+    client1 := cliente{
+        nome:       "Udson",
+        sobrenome:  "Lima",
+        fumante:    false,
+    }
+    cliente2 := cliente{"Joana", "Pereira", true}
+    
+    fmt.Println(client1)
+    fmt.Println(client2)
+}
+-------------------------------------------------------------
+Structs imbutidos.
+
+São structs dentro de sctructs, não tem problema usar dessa
+forma. ex.:
+
+package main
+
+import "fmt"
+
+type pessoa struct {
+    nome    string
+    idade   int
+}
+
+type profissional struct {
+    pessoa
+    titulo   string
+    salario  int
+}
+
+func main() {
+
+    pessoa1 := pessoa {
+        nome:   "ALFREDO",
+        idade:  30
+    }
+
+    profissional1 := profissional{
+        pessoa: pessoa{
+            nome:   "maricota",
+            idade:  31,
+        },
+        titulo:     "pasteleiro",
+        salario:    1000
+    }
+
+    // como acessar esses atributos:
+	fmt.Println(pessoa1.nome)
+    fmt.Println(pessoa2.titulo)
+
+    // Quando o valor não existir nos outros atributos
+    // do struct, ele pode ser acessado diretamente, mesmo possuido um
+    // struct subjacente entre eles, por ex, podemos acessar o valor
+    // .nome do pessoa2 passando apenas pessoa2.nome
+    // ISSO É CHAMADO DE PROMMOTED FIELDS
+
+
+    // Também é possivel fazer uma script composta mais simples nesses 
+    // structs embutidos.
+    // ex.:
+    
+    pessoa3 := pessoa{"joao", 40} // forma do struct simples
+    // scrita composta mais simples
+    pessoa4 := profissional{pessoa{"robson", 50}, "politico", 10000}
+
+----------------------------------------------------------------------------------
+Structs anônimos
+
+VOCÊ mostra uma estrutura, que você consegue utilizar
+e você discarta esse valor, você não o fica reutilizando.
+ex.: 
+
+package main
+
+import "fmt"
+
+func main() {
+    
+    x := struct {
+        nome    string
+        idade   int
+    }{
+        nome: "Udson anonimo",
+        idade: 50
+    }
+	fmt.Println(x)
+
+    // Estrutura definida, utilizada e fim de papo!
+
+}
+
+
+
+}

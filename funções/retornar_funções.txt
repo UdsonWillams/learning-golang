@@ -1,0 +1,23 @@
+Uma função pode retornar uma outra função.
+
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	x := retornaumafuncao() // função que retorna uma função 
+	y := x(3) // agora y vai ter o retorno do que tiver na função de x
+	fmt.Println(y)
+    // esse formato também é possivel
+    // roda a função, pega seu retorno e roda o 
+    // retorno(que é uma função) com o valor do parametro.
+	fmt.Println(retornaumafuncao()(3))
+}
+
+func retornaumafuncao() func(int) int {
+	return func(i int) int {
+		return i * 10
+	}
+}

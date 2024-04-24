@@ -1,0 +1,130 @@
+Funções abstraem funcionalidades.
+
+reutilizamos o codigo ja criado.
+
+As Funções semguem o mesmo padrão.
+
+func (receiver) 1 nome (parametros) (valor do retorno) {e o codigo}
+
+uma função pode ter 2 retornos, e assinalar isso com a ajuda 
+do paranteses. ex.:
+func retorna2(valores) (string, int) {
+
+}
+tudo em go é *pass by value*, salvo algumas exceções.
+
+Criando uma func.
+
+func soma(x, y int) int {
+    return x + y
+}
+
+Criando uma func com multiplos retornos.
+
+func soma_valores_passados(x ...int) int, int {
+    soma := 0
+    for _, v := range x {
+        soma += v
+    }
+    return soma, len(x)
+}
+
+Os parametros variadicos devem ser os ultimos parametros 
+da função. 
+ex.:
+func funcao(a int, b int, c ...str)
+caso a função tenha mais parametros, o variadicos vai por ultimo.
+-----------------
+funçoes com parametros variadicos podem ter 0 ou mais ocorrencias
+não passar nenhum parametro pra uma função que so possui um parametro
+variadico vai funcionar.
+
+É possivel passar um enumerate nos casos de funções com parametros
+variadicos.
+Caso o tipo passado suporte o enumerate.
+
+--------------------------------
+DEFER statement
+
+É basicamente uma forma de dizer para esse codigo antes do 
+DEFER seja executado somente no final das estruções.
+ex.:
+
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("1")
+    defer fmt.Println("2")
+    fmt.Println("3")
+    fmt.Println("4")
+}
+o retorno dessa codigo seria 
+> 1 
+> 3
+> 4
+> 2
+Pois o defer deixou a estrução por ultimo.
+
+EM caso de returns que possam acontecer depois de um defor
+ele também ira ser retornado antes do retorno do codigo em si.
+ex.:
+defor ex = "10"
+if taltal {
+    return ex
+}
+O defor iria exercutar antes do  retorno da função
+e atribuir 10 a ex.
+-----------------------------------------------------------------
+--Metodos--
+Metodo é uma função anexada a um tipo.
+Similar a Orientação a objetos.
+
+package main
+
+import (
+	"fmt"
+)
+
+type pessoa struct {
+	nome string
+	idade int
+}
+
+func (p pessoa) oibomdia() {
+	fmt.Println(p.nome, "diz bom dia!")
+}
+
+func main() {
+
+	mauricio := pessoa{"Maurício", 30}
+	mauricio.oibomdia()
+	
+}
+// func (receiver) identifier(parameters) (returns) { code }
+// Oque eu entendi, é que especificamos o receiver como sendo um tipo
+// logo essa função só poderá ser atrelada a esse tipo.
+
+Então só se é um metodo quando o receiver sai do padrão pra um tipo
+especifico que criamos. oque torna a função um metodo do tipo.
+
+-----------------------------------------------------------------
+-- Funções como expressão -- 
+Podemos usar uma função como expressão que da valor a uma variavel.
+
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	x := 12
+	y := func(x int) int {
+		//fmt.Println(x, "vezes 873648 é:")
+		return x * 873648
+	}
+	fmt.Println(x, "vezes 873648 é:", y(x))
+
+}

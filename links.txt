@@ -9,3 +9,6 @@ Mais exemplos de for e outras estruturas: https://gobyexample.com/
 - https://splice.com/blog/iota-elegant-...
 -   / bit-hacking-with-go 
 
+https://github.com/shijuvar/gokit ## Go Examples: From basics to distributed systems
+
+https://golangr.com/

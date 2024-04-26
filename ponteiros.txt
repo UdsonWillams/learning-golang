@@ -1,0 +1,40 @@
+Ponteiro é uma variavel que armazena um endereço na memoria.
+
+Todos os valores que armazenamos no computador
+são armazenados na memoria.
+
+Esse dado vai ser colocado em um endereço de memoria.
+E com o GO Podemos manipular esses valores e "brincar" um pouco 
+com os endereços.
+
+x := 10
+
+print(&x)
+com essa anotação conseguimos ver o endereço de memoria
+dessa variavel x.
+
+Também podemos atribuir isso a uma variavel por ex.
+y := &x
+y >> 0x123123
+
+Podemos fazer uma eng. reversa, fazer um dir reference
+pegar o endereço e ver oque tem dentro daquele endereço.
+
+Ex.:
+
+x := 10
+y := &x
+z := *y // ver qual o valor contido naquele endereço de y.
+Chamamos isso de --dereference--
+
+-- Em go tudo é pass by value --
+
+Quando usar os ponteiros:
+- Quando estamos lidando com grande quantidade de dados
+E não queremos ficar mudando esse valor de lugar.
+
+Basicamente quando precisarmos mudar um valor por meio de outros
+lugares, utilizamos o ponteiro, por que é certo que vamos conseguir
+mudar nesses lugares também, e não vai ser uma copia do valor.
+COmo passando em uma função por exemplo.
+

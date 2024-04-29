@@ -1,0 +1,6 @@
+// precisa para baixar dependencias e usar nos exemplos.
+go mod init learning_golang = Inicia um arquivo .mod com o nome de learning_golang
+
+// Essa dependencia so foi possivel de ser pega
+// Depois da criação do arquivo .mod com o comando acima.
+go get golang.org/x/crypto/bcrypt

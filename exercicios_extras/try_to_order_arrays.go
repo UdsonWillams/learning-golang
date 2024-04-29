@@ -47,6 +47,19 @@ func main() {
 		fmt.Println(v)
 	}
 }
+func sortStrings() {
+	ss := []string{"abóbora", "maçã", "laranja", "beringela", "berinjela"}
+	fmt.Println(ss)	
+	sort.Strings(ss)	
+	fmt.Println(ss)
+}
+
+func sortInts() {
+	si := []int{123, 987, 324, 876, 234, 987, 234, 76}
+	fmt.Println(si)
+	sort.Ints(si)
+	fmt.Println(si)
+}
 
 // exemplo que peguei na internet e tentei incremetar.
 // https://stackoverflow.com/questions/37695209/golang-sort-slice-ascending-or-descending

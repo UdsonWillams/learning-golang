@@ -107,7 +107,7 @@ func main() {
     // Estrutura definida, utilizada e fim de papo!
 
 }
-
-
-
 }
+
+Uma struct so pode ser importada em GO se ela começar com
+letra maiuscula.

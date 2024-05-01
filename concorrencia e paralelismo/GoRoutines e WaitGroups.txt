@@ -1,0 +1,68 @@
+thread = linha ou cadeamento de função.
+Uma forma de um processo dividir a si mesmo em 2 ou mais tarefas 
+que podem ser executadas concorrencialmente.
+
+Go Routine, um encadeamento de função.
+
+quando pomos um go na frente de uma função ela será executada
+independentemente.
+
+ex:
+func main(){
+    go func1() //go routine
+    func2()
+}
+
+sync.WaitGroup:
+Serve para esperar que uma coleção de goroutines termine sua execução
+    - func Add: "Quantas goroutines?"
+    - func Done: "Deu!"
+    - func Wait: "Espera todo mundo terminar."
+
+ex.:
+package main
+
+import (
+	"fmt"
+	"runtime"
+	"sync"
+	"time"
+)
+
+var wg sync.WaitGroup // O escopo precisa ser mais geral
+
+func main() {
+
+	fmt.Println(runtime.NumCPU())
+	fmt.Println(runtime.NumGoroutine())
+
+	wg.Add(2) // temos que falar o valor de quantas go routines vamos esperar
+
+	go func1() // go para definir a go routine
+	go func2()
+
+	fmt.Println(runtime.NumGoroutine())
+
+	wg.Wait() // dizemos a func main que vai ser outra thread a esperar as funções rodarem para 
+    // a thread ser concluida.
+
+}
+
+func func1() {
+	for i := 0; i < 100; i++ {
+		fmt.Println("func1:", i)
+		time.Sleep(20)
+	}
+	wg.Done() // Dizemos que a função foi finalizada
+}
+
+func func2() {
+	for i := 0; i < 100; i++ {
+		fmt.Println("func2:", i)
+		time.Sleep(20)
+	}
+	wg.Done() // Dizemos que a função foi finalizada
+}
+
+Pareceu bem simples mesmo de implementar, com base em python assim que é bem 
+mais confuso em um primeiro momento.

@@ -1,0 +1,11 @@
+O primeiro CPU dual core "popular" veio em 2006
+Em 2007 o google começou a criar a linguaguem GO para usar
+essa vantagem de multiplos cores.
+
+c, c++, c#, java, python, etc foram criadas antes de 2006.
+
+Ou seja go tem uma abordagem unica(fácil) para estudar esse topico.
+
+Concorrencia é o programa rodar os comando de cada vez
+PARALELISMo é utilizar dos cores a mais para rodar mais comando 
+juntos de cada vez.

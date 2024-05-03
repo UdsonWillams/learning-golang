@@ -1,0 +1,118 @@
+Canais são uma das caracteristicas mais legais da Golang
+
+São a maneira de transmitirmos dados entre go routines.
+
+Pegamos go funcs e transmitirmos valores entre elas.
+
+A ideia é que esses canais andem em sincronia com as
+go routines.
+quando voce "expoe" que o canal retornará um valor 
+voce precisa que alguem receba esse valor, e não deixe ele
+"solto"
+exemplos da aula;
+
+func main() {
+	canal := make(chan int)
+	canal <- 42
+	fmt.Println(<-canal)
+} // codigo que não funciona
+
+func main() {
+	canal := make(chan int)
+	
+	go func() {
+	canal <- 42
+	}()
+	
+	fmt.Println(<-canal)
+} // codigo funcional
+
+Mais exemplos .:
+- Código: 
+    - Block: https://play.golang.org/p/dClS7vQlYE (não roda!)
+    - Go routine: https://play.golang.org/p/ZbNCwUuiPi
+    - Buffer: https://play.golang.org/p/32vYvCR7qn
+    - Buffer block: https://play.golang.org/p/smeW6vigAT
+    - Mais buffer: https://play.golang.org/p/Pe2pcboGiA
+
+
+// canais podem ser direcionais(send e receive | manda e recebe).
+-- Aos aventureitos: https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbllEa0FPaFVCLUUtMklGN2t6X09KTHhtQTJyUXxBQ3Jtc0tud0JzanlYOXVvTko0cVhUZTE3eE0zQ1U0MWZRWDJSbWxTaFNVZjlxTzFvWUh4OFdqTGZiaGt2dDdoZ0xCS0J1VWFTazdGUzI0TElMU3BCbk4yZml1WDVxVXlkeVZ2ZHlPYjc1dlVsYmgtbWtHdzJsTQ&q=https%3A%2F%2Fstackoverflow.com%2Fquestions%2F13596186%2Fwhats-the-point-of-one-way-channels-in-go&v=vYYHoKLb_8I
+
+- send >> chan<-
+    É um canal que só manda a informação
+
+- receive >> <-chan
+    É um canal que só recebe a informação
+
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	canal := make(chan int)
+	
+	go send(canal)
+	
+	receive(canal)
+	
+}
+
+func send(s chan<- int) {
+	s <- 42 // aqui seta o valor do canal. 
+}
+
+func receive(r <-chan int) {
+	fmt.Println("O valor recebido do canal foi:", <-r)
+    // aqui você recebe o valor do canal
+}
+Ou seja no send, setamos um valor pro canal
+No receive, recebemos esse valor que foi setado.
+E no caso o conseguimos demonstrar. 
+
+No caso o caso >> canal := make(chan int) é um padrão
+bidimessional.
+
+Um canal bidimessional, ou geral pode ser convertido
+para um especifico, send ou receiver, mas outros modelos 
+de conversão além desse não são aceitos.
+
+// range e close
+
+É possivel usar um canal junto do range num for loop.
+Só que é necessario indicar o final do canal nesse for com 
+a keyword close. quando voce passa esse comando close(canal)
+você fecha aquele canal.
+
+Usar range em canais é muito comum
+ex.:
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	c := make(chan int)
+
+	go meuloop(10, c)
+	prints(c)
+
+}
+
+func meuloop(t int, s chan<- int) {
+	for i := 0; i < t; i++ {
+		s <- i
+	}
+	close(s)
+}
+
+func prints(r <-chan int) {
+	for v := range r {
+		fmt.Println("Recebido do canal:", v)
+	}
+}
+
+// SELECT

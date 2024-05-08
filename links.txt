@@ -15,3 +15,5 @@ https://github.com/shijuvar/gokit ## Go Examples: From basics to distributed sys
 https://golangr.com/
 
 https://cdn.jsdelivr.net/gh/GoesToEleven/golang-web-dev@17e3852d/040_json/README.html
+
+Rob Pike (Go Concurrency Patterns): https://www.youtube.com/watch?v=f6kdp27TYZs

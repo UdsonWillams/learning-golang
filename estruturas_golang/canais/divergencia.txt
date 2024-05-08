@@ -1,0 +1,122 @@
+- Divergência é o contrário de convergência
+
+Ou seja, envolve a gente pegar dados de poucos pontos 
+diferentes e convergir eles em muitos pontos do sistema.
+
+ex.:
+- 1. Um stream vira centenas de go funcs que depois convergem.
+    - Dois canais.
+    - Uma func manda X números ao primeiro canal.
+    - Outra func faz um range deste canal, e para cada ítem lança uma go func que poe o retorno de trabalho() no canal dois.
+    - Trabalho() é um timer aleatório pra simular workload.
+    - Por fim, range canal dois demonstra os valores.
+
+// No exemplo a gente cria 1 canal, adiciona valores a ele.
+// Depois criamos uma func anonima com go routines e ela vai
+// Fazer os trabalhos com os valores do canal. 
+// Ou seja de um ponto(canal) fazemos n trabalhos diferentes 
+// e voltamos o canal pra um unico ponto de novo com o canal2
+
+package main
+
+import (
+	"fmt"
+	"math/rand"
+	"sync"
+	"time"
+)
+
+func main() {
+	canal1 := make(chan int)
+	canal2 := make(chan int)
+
+	go manda(20, canal1)
+	go outra(canal1, canal2)
+
+	for v := range canal2 {
+		fmt.Println(v)
+	}
+
+}
+
+func manda(n int, canal chan int) {
+	for i := 0; i < n; i++ {
+		canal <- i
+	}
+	close(canal)
+}
+
+func outra(canal1, canal2 chan int) {
+	var wg sync.WaitGroup
+
+	for v := range canal1 {
+		wg.Add(1)
+		go func(x int) {
+			canal2 <- trabalho(x)
+			wg.Done()
+		}(v)
+	}
+	wg.Wait()
+	close(canal2)
+}
+
+func trabalho(n int) int {
+	time.Sleep(time.Millisecond * time.Duration(rand.Intn(1e3)))
+	return n
+}
+
+ex 02.:
+- 2. Com throttling! Ou seja, com um número máximo de go funcs.
+        - Ídem acima, mas a func que lança go funcs é assim:
+        - Cria X go funcs, cada uma com um range no primeiro canal que, para cada item, 
+        poe o retorno de trabalho() no canal dois.
+
+
+// Esse exemplo é definindo um valor n de go routines pre-definidos
+// por nós mesmos. no exemplo as funções são chamadas de 5 em 5
+// inves de não ter um controle exato
+package main
+
+import (
+	"fmt"
+	"sync"
+	"time"
+)
+
+func main() {
+	canal1 := make(chan int)
+	canal2 := make(chan int)
+	funções := 5
+	go manda(100, canal1)
+	go outra(funções, canal1, canal2)
+	for v := range canal2 {
+		fmt.Println(v)
+	}
+}
+
+func manda(n int, canal chan int) {
+	for i := 0; i < n; i++ {
+		canal <- i
+	}
+	close(canal)
+}
+
+func outra(funções int, canal1, canal2 chan int) {
+	var wg sync.WaitGroup
+	for i := 0; i < funções; i++ {
+		wg.Add(1)
+		go func() {
+			for v := range canal1 {
+				canal2 <- trabalho(v)
+			}
+			wg.Done()
+		}()
+	}
+	wg.Wait()
+	close(canal2)
+}
+
+func trabalho(n int) int {
+	time.Sleep(time.Millisecond * 1000) //time.Duration(rand.Intn(1e3)))
+	return n
+}

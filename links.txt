@@ -1,3 +1,5 @@
+https://go.dev/doc/install :: instalação!
+
 ASCII: https://en.wikipedia.org/wiki/ASCII
 
 Efective_GO: https://go.dev/doc/effective_go

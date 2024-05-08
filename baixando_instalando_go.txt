@@ -7,7 +7,7 @@ Começamos removendo qualquer outra instalação de go que possamos ter na maqui
 Depois extraismo o arquivo de download do go, disponivel em go.dev.com
 1° comando : rm -rf /usr/local/go && tar -C /usr/local -xzf go1.22.2.linux-amd64.tar.gz
 
-Preicisei do comando sudo -i pra rodar esse acima /\
+Preicisei do comando sudo su pra rodar esse acima /\
 como fala aqui abaixo.
 (You may need to run the command as root or through sudo).
 Do not untar the archive into an existing /usr/local/go tree. This is known to produce broken Go installations.

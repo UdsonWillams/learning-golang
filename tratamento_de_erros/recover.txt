@@ -1,0 +1,55 @@
+- https://go.dev/blog/defer-panic-and-recover
+- https://golang.org/pkg/builtin/#recover
+
+exemplo pratico de recover 
+
+package main
+
+import "fmt"
+
+func main() {
+	f()
+	fmt.Println("Returned normally from f.")
+}
+
+func f() {
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Recovered in f", r)
+		}
+	}()
+	fmt.Println("Calling g.")
+	g(0)
+	fmt.Println("Returned normally from g.")
+}
+
+func g(i int) {
+	if i > 3 {
+		fmt.Println("Panicking!")
+		panic(fmt.Sprintf("%v", i))
+	}
+	defer fmt.Println("Defer in g", i)
+	fmt.Println("Printing in g", i)
+	g(i + 1)
+}
+
+Achei o exemplo um pouco confuso, mas é possivel entender.
+
+A func main chama a func f, e a f chama a func g 
+A func f possui um defer com uma função anonima
+ela possui um recover(), e que caso o recover seja acionado 
+a função apenas retorna um print.
+
+Na função g, usamos recursão para chamar o valor de i e ir somando
+valores a ele. e quando esse valor for mais que 3, retornamos um panic.
+
+Esse panic vai retornar todas as funções recursivas que foram chamadas, 
+ou seja, g vai fazer: 0, 1, 2, 3, e o panic vai retornar os valores 
+3, 2 ,1 ,0, e depois sair da função g, voltando para a função f. 
+isso cancela a execução de F, porem o panic deixa as funções defer acontecerem
+E na função defer de f, existe um recover(), oque quebra essa sequencia de
+quebra de sistema, quando a go routine retorna para main, ela já está normal 
+por conta dessa função defer em f(). E continua sua execução normal, oque não aconteceria
+sem o tratamento do recover()
+
+É bom estudar melhor sobre o recover.

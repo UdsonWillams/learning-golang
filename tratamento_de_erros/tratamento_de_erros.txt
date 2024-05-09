@@ -1,0 +1,18 @@
+Em GO não temos exceções.
+> https://go.dev/doc/faq#exceptions
+> https://go.dev/blog/error-handling-and-go
+
+O tipo error é uma interface pre pronta da linguagem.
+Ele possui um metodo Error() e ele retorna uma string.
+
+- É interessante criar o hábito de lidar com erros imediatamente, similar a e.g. defer close.
+
+É possivel utilizar o package "errors" para retornar novos 
+tipos errors, por ex.
+
+err := errors.New("error ao tentar fazer isso")
+if err != nil {
+    fmt.Println(err)
+}
+
+Isso retorna um valor do tipo err e nos o tratamos imediatamente.

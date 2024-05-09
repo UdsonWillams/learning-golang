@@ -1,0 +1,135 @@
+OS erros em GO não são especiais. 
+São valores como qualquer outros, e com isso 
+nos temos a linguagem inteira a disposição.
+
+exemplo de errors.New()
+package main
+
+import (
+	"errors"
+	"log"
+)
+
+func main() {
+	_, err := sqrt(-10)
+	if err != nil {
+		log.Fatalln(err) // Se retornar erro, retorna um fatalln com o valor do error.
+	}
+}
+
+func sqrt(f float64) (float64, error) {
+	if f < 0 {
+		return 0, errors.New("norgate math: square root of negative number")
+	}// Se for menor que 0, retorna um novo erro.
+	return 42, nil
+}
+
+// Aqui outro exemplo, agora setando o valor de erro
+// como uma variavel de scopo geral, e quando queremos soltar
+// o novo erro, chamamos essa variavel, e não chamamos um new.
+
+package main
+
+import (
+	"errors"
+	"fmt"
+	"log"
+)
+
+var ErrNorgateMath = errors.New("norgate math: square root of negative number")
+
+func main() {
+	fmt.Printf("%T\n", ErrNorgateMath)
+	_, err := sqrt(-10)
+	if err != nil {
+		log.Fatalln(err)
+	}
+}
+
+func sqrt(f float64) (float64, error) {
+	if f < 0 {
+		return 0, ErrNorgateMath
+	}
+	return 42, nil
+}
+
+// see use of errors.New in standard library:
+// http://golang.org/src/pkg/bufio/bufio.go
+// http://golang.org/src/pkg/io/io.go
+
+
+// Usando fmt.Errorf Essa função retorna um novo error, como o errors.new
+// Ela tbm aceita que valores sejam passados a ela.
+
+// Também é possivel usar a ideia da variavel de scopo geral 
+// que foi descrito acima para utilizar do fmt.Errorf.
+
+package main
+
+import (
+	"fmt"
+	"log"
+)
+
+func main() {
+	_, err := sqrt(-10.23)
+	if err != nil {
+		log.Fatalln(err)
+	}
+}
+
+func sqrt(f float64) (float64, error) {
+	if f < 0 {
+		return 0, fmt.Errorf("norgate math again: square root of negative number: %v", f)
+	}
+	return 42, nil
+}
+-------------------------------------
+
+// Basicamente se precisamos de um erro mais "expressivo"
+// Podemos criar um tipo especifico para o erro e criar um metodo
+// Error vinculado a esse tipo, assim fazendo o valor suprir a interface Errors
+// que precisa de um metodo Errors, e dai podemos lançar erros personalizados
+// Mais facilmente e com mais valores.
+
+package main
+
+import (
+	"fmt"
+	"log"
+)
+
+type norgateMathError struct { // cria o struct.
+	lat  string
+	long string
+	err  error
+}
+
+func (n norgateMathError) Error() string {
+	return fmt.Sprintf("a norgate math error occured: %v %v %v", n.lat, n.long, n.err)
+} // assina o contrato da interface Error()
+// Também poe bem mais  valores expressivos.
+
+func main() {
+	_, err := sqrt(-10.23)
+	if err != nil {
+		log.Println(err)
+	}
+}
+
+func sqrt(f float64) (float64, error) {
+	if f < 0 {
+		nme := fmt.Errorf("norgate math redux: square root of negative number: %v", f)
+		return 0, norgateMathError{"50.2289 N", "99.4656 W", nme}
+        // aqui retornamos o tipo que criamos, como ele assinou o contrato da interface, agr ele é um erro.
+	}
+	return 42, nil
+}
+
+// see use of structs with error type in standard library:
+//
+// http://golang.org/pkg/net/#OpError
+// http://golang.org/src/pkg/net/dial.go
+// http://golang.org/src/pkg/net/net.go
+//
+// http://golang.org/src/pkg/encoding/json/decode.go

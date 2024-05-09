@@ -1,0 +1,37 @@
+Temos alguma opções para utilizar para tratar os erros.
+
+Temos as funções:
+fmt.Println("error", err)
+log.Println("error", err)
+log.Fatalln(err)
+panic(err)
+
+// retorno padrão, volta no console oque ocorreu.
+fmt.Println("error", err) 
+
+// Funciona da mesma maneira que o println, mas o log adiciona
+// os valores de data e horario na mensagem, comum em logs.
+log.Println("error", err)
+
+// Erro catastrofico, usado para quando o programa vai realmente
+// quebrar, não rodar funções defer, nem go routines.
+// É equivalente a rodar um println e depois um os.exit(1)
+log.Fatalln(err)
+
+// É equivalente a rodar um println e depois um panic()
+// Vai retornar um log e um panic
+log.Panicln(err)
+
+// retorna so um panic
+panic = Quando chamo o panic, eu paro a execução aonde eu estou mas
+as funções com defer rodam e eu fecho a função atual.
+vai encerrando as funções em sequencia do momento que foi chamado
+até a main, e encerrando o sistema.
+
+É possivel controlar o processo com a função builtin RECOVER.
+
+Fatal = erro fatal, realmente não era pra isso ocorrer
+Panic = Erro que pode ser controlado, podemos ter uma solução.
+
+Recomendado usar os comandos pelo pacote log
+com log.Println, log.Fatalln e log.Panicln

@@ -1,0 +1,10 @@
+precisei instalar o godoc com o comando 
+sudo apt install golang-golang-x-tools
+
+
+PARA CHAMARMOS O GODOC USAMOS 
+
+godoc -http=:8000
+chamamos o godoc e falamos pra usar o http
+na porta 8000
+

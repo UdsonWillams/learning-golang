@@ -1,0 +1,87 @@
+Comando de linha de comando. Temos algumas possibilidades:
+    - golang.org → documentação da standard library
+    - godoc.org → documentação da standard library e outros
+    - go doc → comando para ler documentação na linha de comando
+    - godoc → idem acima, para pode-se servir a documentação local via http
+
+É Possivel adicionar documentação no godoc.com 
+Apenas subindo sua aplicação no git e referenciado 
+o link dela no site do godoc, isso já trás os valores que você
+escreveu, o package, suas funções e etc. 
+Bem simples. Também pra excluir é possivel apenas mudar os valores das
+pastas mudando o link do github.(pelo que eu entendi kk)
+
+- documentação deve ser acessivel e sustentavel
+- deve ser bem escrita e correta e fácil de escrever
+- deve evoluir junto com o codigo.
+
+-- A partir do godoc os comentarios do codigo viram documentação. --
+
+- Na prática:
+    - Para documentar um tipo, uma variável, uma constante, ou um pacote, escreva um comentário imediatamente antes de sua declaração, sem linhas em branco
+    - Comece a frase com o nome do elemento. No caso de pacotes, a primeira linha aparece no "package list."
+    - Caso esteja escrevendo bastante documentação, utilize um arquivo doc.go. Exemplo: package fmt.
+- A melhor parte dessa abordagem minimalista é que é super fácil de usar. Como resultado, muita coisa em Go, incluindo toda a standard library, já segue estas convenções.
+
+Mais exemplos na pratica no exercicios 11 e no documentação.go nesse pacote.
+
+COmo no exemplo abaixo \/\/ usamos o formato de 
+falar sobre o objeto que será escrito na documentação, antes de iniciar a documentação
+
+ex.:
+/*
+package calculadora faz calculos matematicos
+*/
+package calculadora
+
+/\/\/\ aqui eu falo, package calculadora faz tal tal, isso deve seguir nos outros exemplos
+
+OU 
+
+// X é o PRIMEIRO valor
+var x int
+
+
+ex total .:
+/*
+package calculadora faz calculos matematicos
+*/
+package calculadora
+
+import "fmt"
+
+// X é o PRIMEIRO valor
+var x int
+
+// Y é o SEGUNDO valor
+var y int
+
+// Func main Retorna os valores somados, subtraidos, divididos e multiplicados.
+func main() {
+	x = 10
+	y = 25
+	fmt.Println(somar(x, y))
+	fmt.Println(sub(x, y))
+	fmt.Println(div(x, y))
+	fmt.Println(mult(x, y))
+}
+
+// Func somar soma o primeiro e segundo valor
+func somar(x, y int) int {
+	return x + y
+}
+
+// Func sub subtrai o primeiro e segundo valor
+func sub(x, y int) int {
+	return x - y
+}
+
+// Func div divide o primeiro e segundo valor
+func div(x, y int) int {
+	return x / y
+}
+
+// Func mult multiplica o primeiro e segundo valor
+func mult(x, y int) int {
+	return x * y
+}

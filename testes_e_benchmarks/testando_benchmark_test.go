@@ -1,18 +1,12 @@
 package main
 
 import (
-	"fmt"
 	"testing"
 )
 
 type test1 struct {
 	data   []int
 	answer int
-}
-
-func main() {
-	values := soma(1, 2, 3, 5)
-	fmt.Println(values)
 }
 
 func soma1(i ...int) int {

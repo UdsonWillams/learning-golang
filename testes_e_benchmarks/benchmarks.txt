@@ -1,0 +1,15 @@
+- Benchmarks nos permitem testar a velocidade ou performance do nosso código.
+- Na prática:
+    - Arquivo: _test.go
+    - BET: Testes, Exemplos e...
+    - func BenchmarkFunc (b *testing.B) { ... b.N ... }    
+- go help testflag
+
+BET = Benchmarks, examples e testes.
+
+// Formato do Benchmark.
+func BenchmarkFunc (b *testing.B) { ... b.N ... }
+
+// comando
+- go test -bench . ← todos
+- go test -bench NomeFunc ← somente a Func

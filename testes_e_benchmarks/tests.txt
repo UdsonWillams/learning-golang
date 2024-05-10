@@ -1,0 +1,20 @@
+- Testes devem:
+    - ficar num arquivo cuja terminação seja _test.go
+    - ficar na mesma package que o código a ser testado
+    - ficar em funções com nome "func TestNome(*testing.T)"
+- Para rodar os testes:
+    - go test
+    - go test -v
+- Para falhas, utilizamos t.Error(), onde a maneira idiomática é algo do tipo "expected: x. got: y."
+
+- Podemos escrever testes em série para testar variedades de situações.
+exemplo no testando_em_go_test.go 
+
+- Outra maneira é fazer testes como exemplos.
+- Estes exemplos são os mesmos que aparecem na documentação.
+- Para exemplos o formato é "func ExampleFuncao()"
+- Deve haver um comentário "// Output: resultado", que é o que será testado
+- Para visualizar seu exemplo na documentação, fazemos o de sempre:
+    - godoc -http :8080
+- Tanto para testes quanto para exemplos podemos utilizar: go test ./...
+- Mais: https://blog.golang.org/examples

@@ -1,3 +1,7 @@
+package main
+
+import "fmt"
+
 func main() {
 
 	par := make(chan int)
@@ -12,7 +16,7 @@ func main() {
 func mandaNúmeros(par, ímpar chan int, quit chan bool) {
 	total := 100
 	for i := 0; i < total; i++ {
-		if i % 2 == 0 {
+		if i%2 == 0 {
 			par <- i
 		} else {
 			ímpar <- i

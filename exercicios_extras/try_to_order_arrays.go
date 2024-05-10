@@ -1,8 +1,8 @@
-"""
-Crie um array referente aos anos de nascimento das 5 pessoas mais próximas a você. Em seguida:
-- Ordene o array  na ordem crescente e mostre o resultado;
-- Ordene o array na ordem decrescente e mostre o resultado;
-"""
+// """
+// Crie um array referente aos anos de nascimento das 5 pessoas mais próximas a você. Em seguida:
+// - Ordene o array  na ordem crescente e mostre o resultado;
+// - Ordene o array na ordem decrescente e mostre o resultado;
+// """
 
 package main
 
@@ -49,8 +49,8 @@ func main() {
 }
 func sortStrings() {
 	ss := []string{"abóbora", "maçã", "laranja", "beringela", "berinjela"}
-	fmt.Println(ss)	
-	sort.Strings(ss)	
+	fmt.Println(ss)
+	sort.Strings(ss)
 	fmt.Println(ss)
 }
 

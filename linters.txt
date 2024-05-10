@@ -1,6 +1,8 @@
 - gofmt: formata o código
 - go vet: correctness → procura constructs suspeitos
+    - Se tiver erros ele vai nos mostrar para que possamos corrigir
 - golint: suggestions → procura coding style ruim
-
+    - Melhora o formato do codigo, quer que a gente faça "direito"
 
 gofmt -w ./ ... >> roda formatação em todas as pastas/subpastas 
+

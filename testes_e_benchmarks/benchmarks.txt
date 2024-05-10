@@ -13,3 +13,6 @@ func BenchmarkFunc (b *testing.B) { ... b.N ... }
 // comando
 - go test -bench . ← todos
 - go test -bench NomeFunc ← somente a Func
+
+// dentro da pasta dos Benchmarks eu rodei:
+go test -bench .  == roda todos os benchs de uma vez.
